@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 @Service
 public class BookService {
 
-    private JdbcTemplate jdbcTemplate;
-    private AuthorService authorService;
+    private final JdbcTemplate jdbcTemplate;
+    private final AuthorService authorService;
 
     Logger logger = Logger.getLogger(AuthorService.class.getName());
 
