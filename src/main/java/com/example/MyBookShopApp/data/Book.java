@@ -1,6 +1,13 @@
 package com.example.MyBookShopApp.data;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "books")
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String author;
     private String title;
