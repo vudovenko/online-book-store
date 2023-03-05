@@ -9,7 +9,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Transient // не сохраняется в БД
     private String author;
+
     private String title;
     private Integer priceOld;
     private Integer price;

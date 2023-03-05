@@ -1,6 +1,8 @@
 package com.example.MyBookShopApp.data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "authors")
@@ -11,6 +13,10 @@ public class Author {
     private Integer id;
     private String firstName;
     private String lastName;
+
+    @OneToMany
+    @JoinColumn(name = "author_id", referencedColumnName = "id") // создастся колонка author_id в таблице books
+    private List<Book> bookList = new ArrayList<>();
 
     public Integer getId() {
         return id;
