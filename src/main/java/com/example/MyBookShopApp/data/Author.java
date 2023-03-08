@@ -14,8 +14,8 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany
-    @JoinColumn(name = "author_id", referencedColumnName = "id") // создастся колонка author_id в таблице books
+    @OneToMany(mappedBy = "author")
+//    @JoinColumn(name = "author_id", referencedColumnName = "id") // создастся колонка author_id в таблице books
     private List<Book> bookList = new ArrayList<>();
 
     public Integer getId() {
@@ -40,6 +40,14 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 
     @Override
