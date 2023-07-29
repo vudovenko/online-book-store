@@ -9,13 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GenresPageController {
 
-    private final BookService bookService;
-
-    @Autowired
-    public GenresPageController(BookService bookService) {
-        this.bookService = bookService;
-    }
-
     @GetMapping("/genres")
     public String genresPage() {
         return "genres/index";
