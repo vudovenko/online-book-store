@@ -19,23 +19,7 @@
                 <ul th:replace="~{fragments/menu_smallImg_fragment :: menu_smallImg}"></ul>
             </div>
             <div class="row-block">
-                <ul class="menu menu_vt Footer-menu">
-                    <li class="menu-item"> <a class="menu-link" href="/index.hml"
-                           th:href="@{/}" th:text="#{topbar.main}">Главная</a>
-                    </li>
-                    <li class="menu-item"> <a class="menu-link" href="/genres/index.html"
-                           th:href="@{/genres}" th:text="#{topbar.genres}">Жанры</a>
-                    </li>
-                    <li class="menu-item"> <a class="menu-link" href="/books/recent.html"
-                           th:href="@{/books/recent}" th:text="#{topbar.news}">Новинки</a>
-                    </li>
-                    <li class="menu-item"> <a class="menu-link" href="/books/popular.html"
-                           th:href="@{/books/popular}" th:text="#{topbar.popular}">Популярное</a>
-                    </li>
-                    <li class="menu-item"> <a class="menu-link" href="/authors/index.html"
-                           th:href="@{/authors}" th:text="#{topbar.authors}">Авторы</a>
-                    </li>
-                </ul>
+                <ul th:replace="~{fragments/common_header_fragment :: menuMain(menu='menu_vt Footer-menu')}"></ul>
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">

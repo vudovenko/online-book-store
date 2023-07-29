@@ -6,7 +6,7 @@
     <div class="Header-menu">
         <div class="wrap">
             <nav class="menuModal" id="navigate">
-                <ul class="menu menu_main">
+                <ul th:fragment="menuMain" class="menu" th:classappend="${menu}">
                     <li class="menu-item" th:classappend="${main}">
                         <a class="menu-link" href="/index.hml"
                            th:href="@{/}" th:text="#{topbar.main}">Главная</a>

@@ -51,7 +51,8 @@ p.error-browser
         | браузера здесь&nbsp;
     | для правильного отображения сайта.
 -->
-<header th:replace="~{fragments/common_header_fragment :: headFragment(main='menu-item_ACTIVE')}"></header>
+<header th:replace="~{fragments/common_header_fragment
+                        :: headFragment(main='menu-item_ACTIVE', menu='menu_main')}"></header>
 <div class="Middle">
     <div class="wrap">
         <main class="Middle-main">
