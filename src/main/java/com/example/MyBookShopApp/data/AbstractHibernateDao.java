@@ -15,7 +15,6 @@ public abstract class AbstractHibernateDao<T> {
 
     private Class<T> clazz;
 
-
     public void setClazz(Class<T> clazz) {
         this.clazz = clazz;
     }

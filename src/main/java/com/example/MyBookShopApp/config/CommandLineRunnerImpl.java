@@ -36,7 +36,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         TestEntity updateTestEntity = updateTestEntityById(5L);
         if (updateTestEntity != null) {
-            Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update " + readTestEntity);
+            Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update " + updateTestEntity);
         } else {
             throw new NullPointerException();
         }
@@ -44,7 +44,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         deleteTestEntityById(4L);
 
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).
-                info(bookRepository.findBooksByAuthor_FirstName("Jelene").toString());
+                info(bookRepository.findBooksByAuthor_FirstName("Adaline").toString());
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).
                 info(bookRepository.customFindAllBooks().toString());
     }
