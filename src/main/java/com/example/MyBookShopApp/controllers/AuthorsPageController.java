@@ -1,16 +1,18 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.data.Author;
-import com.example.MyBookShopApp.data.AuthorService;
+import com.example.MyBookShopApp.data.author.entities.Author;
+import com.example.MyBookShopApp.data.author.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/books")
 public class AuthorsPageController {
 
     private final AuthorService authorService;
@@ -26,7 +28,7 @@ public class AuthorsPageController {
     }
 
     @GetMapping("/authors")
-    public String authorsPage(/*Model model*/) {
+    public String authorsPage() {
         return "/authors/index";
     }
 }

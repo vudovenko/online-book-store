@@ -19,7 +19,7 @@
                 <ul th:replace="~{fragments/menu_smallImg_fragment :: menu_smallImg}"></ul>
             </div>
             <div class="row-block">
-                <ul th:replace="~{fragments/common_header_fragment :: menuMain(menu='menu_vt Footer-menu')}"></ul>
+                <ul th:replace="~{fragments/header/common_header_fragment :: menuMain(menu='menu_vt Footer-menu')}"></ul>
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">
@@ -27,7 +27,7 @@
                            th:href="@{/signin}" th:text="#{topbar.signin}">Войти</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="/documents/index.html"
-                           th:href="@{/documents}" th:text="#{topbar.documents}">Документы</a>
+                                             th:href="@{/spring-frontend/documents}" th:text="#{topbar.documents}">Документы</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="/about.html"
                            th:href="@{/about}" th:text="#{topbar.about}">О компании</a>

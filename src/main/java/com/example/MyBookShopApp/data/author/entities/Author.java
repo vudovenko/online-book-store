@@ -1,4 +1,6 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.data.author.entities;
+
+import com.example.MyBookShopApp.data.book.entities.Book;
 
 import javax.persistence.*;
 import java.util.ArrayList;
