@@ -16,9 +16,9 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
-//    @JoinColumn(name = "author_id", referencedColumnName = "id") // создастся колонка author_id в таблице books
-    private List<Book> bookList = new ArrayList<>();
+    @ManyToMany(mappedBy = "authors", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.DETACH})
+    private List<Book> bookList;
 
     public Integer getId() {
         return id;
