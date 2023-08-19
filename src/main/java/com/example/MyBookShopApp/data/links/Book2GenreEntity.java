@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.data.book.links;
+package com.example.MyBookShopApp.data.links;
 
 import javax.persistence.*;
 
