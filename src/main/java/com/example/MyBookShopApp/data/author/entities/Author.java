@@ -3,7 +3,6 @@ package com.example.MyBookShopApp.data.author.entities;
 import com.example.MyBookShopApp.data.book.entities.Book;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,9 +15,12 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.DETACH})
-    private List<Book> bookList;
+    @JoinTable(name = "book2author",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> books;
 
     public Integer getId() {
         return id;
@@ -44,12 +46,12 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

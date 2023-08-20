@@ -1,6 +1,8 @@
 package com.example.MyBookShopApp.data.book.entities;
 
 import com.example.MyBookShopApp.data.author.entities.Author;
+import com.example.MyBookShopApp.data.genre.GenreEntity;
+import com.example.MyBookShopApp.data.user.UserEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,12 +18,37 @@ public class Book {
     private Integer priceOld;
     private Integer price;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinTable(name = "book2author",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @ManyToMany(mappedBy = "books",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
     private List<Author> authors;
+
+    @ManyToMany(mappedBy = "books",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<GenreEntity> genres;
+
+
+    @ManyToMany(mappedBy = "books",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+
+    private List<UserEntity> users;
+
+    @ManyToMany(mappedBy = "booksDownloadedByUser",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<UserEntity> usersWhoDownloadedBook;
+
+    @ManyToMany(mappedBy = "booksBoughtByUser",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<UserEntity> usersWhoBoughtBook;
+
+    @ManyToMany(mappedBy = "booksReviewedByUser",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<UserEntity> usersWhoReviewedBook;
 
     public Integer getId() {
         return id;
