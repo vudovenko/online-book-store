@@ -1,8 +1,11 @@
 package com.example.MyBookShopApp.data.book.entities;
 
 import com.example.MyBookShopApp.data.author.entities.Author;
+import com.example.MyBookShopApp.data.genre.GenreEntity;
+import com.example.MyBookShopApp.data.user.UserEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -11,15 +14,41 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-//    @Transient // не сохраняется в БД
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
-
     private String title;
     private Integer priceOld;
     private Integer price;
+
+    @ManyToMany(mappedBy = "books",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<Author> authors;
+
+    @ManyToMany(mappedBy = "books",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<GenreEntity> genres;
+
+
+    @ManyToMany(mappedBy = "books",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+
+    private List<UserEntity> users;
+
+    @ManyToMany(mappedBy = "booksDownloadedByUser",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<UserEntity> usersWhoDownloadedBook;
+
+    @ManyToMany(mappedBy = "booksBoughtByUser",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<UserEntity> usersWhoBoughtBook;
+
+    @ManyToMany(mappedBy = "booksReviewedByUser",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.REFRESH, CascadeType.DETACH})
+    private List<UserEntity> usersWhoReviewedBook;
 
     public Integer getId() {
         return id;
@@ -27,14 +56,6 @@ public class Book {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
     }
 
     public String getTitle() {
@@ -61,14 +82,22 @@ public class Book {
         this.price = price;
     }
 
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", author=" + author +
                 ", title='" + title + '\'' +
                 ", priceOld=" + priceOld +
                 ", price=" + price +
+                ", authors=" + authors +
                 '}';
     }
 }
