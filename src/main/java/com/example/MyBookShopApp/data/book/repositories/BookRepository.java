@@ -6,5 +6,26 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<Book,Integer> {
+public interface BookRepository extends JpaRepository<Book, Integer> {
+
+    @Query("select b\n" +
+            "from Book b\n" +
+            "\tjoin Book2AuthorEntity b2a \n" +
+            "\ton b.id = b2a.bookId\n" +
+            "\t\tjoin Author a\n" +
+            "\t\ton a.id = b2a.authorId\n" +
+            "where LOWER(a.firstName) like CONCAT('%', LOWER(:authorsFirstName), '%')")
+    List<Book> findBooksByAuthorsWhoseFirstNameContains(String authorsFirstName);
+
+    List<Book> findBooksByTitleContainingIgnoreCase(String bookTitle);
+
+    List<Book> findBooksByPriceOldBetween(int min, int max);
+
+    List<Book> findBooksByPriceOldIs(int price);
+
+    @Query("from Book where isBestseller = 1")
+    List<Book> getBestsellers();
+
+    @Query("from Book b where b.price = (select MAX(b2.price) from Book b2)")
+    List<Book> getBooksWithMaxDiscount();
 }
