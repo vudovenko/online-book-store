@@ -62,7 +62,7 @@ p.error-browser
                     </h2>
                 </div>
                 <div class="Slider Slider_carousel">
-                    <div class="Slider-box Cards"
+                    <div class="Slider-box Cards" data-load="recommended" data-loadoffset="0" data-loadlimit="6"
                          th:insert="~{fragments/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
                     <div class="Slider-navigateWrap">
                         <div class="Slider-navigate">
@@ -78,7 +78,7 @@ p.error-browser
                     </h2>
                 </div>
                 <div class="Slider Slider_carousel">
-                    <div class="Slider-box Cards" data-load="recent" data-loadoffset="8" data-loadlimit="20"
+                    <div class="Slider-box Cards" data-load="recent" data-loadoffset="0" data-loadlimit="6"
                          th:insert="~{fragments/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
                     <div class="Slider-navigateWrap">
                         <div class="Slider-navigate">
@@ -94,7 +94,7 @@ p.error-browser
                     </h2>
                 </div>
                 <div class="Slider Slider_carousel">
-                    <div class="Slider-box Cards" data-load="popular" data-loadoffset="8" data-loadlimit="20"
+                    <div class="Slider-box Cards" data-load="popular" data-loadoffset="0" data-loadlimit="6"
                          th:insert="~{fragments/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
                     <div class="Slider-navigateWrap">
                         <div class="Slider-navigate">
