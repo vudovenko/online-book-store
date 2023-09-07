@@ -31,7 +31,7 @@ public class AuthorsPageController {
         return authorService.getAuthorsMap();
     }
 
-    @GetMapping("/authors")
+    @GetMapping("/authors-page")
     public String authorsPage() {
         return "/authors/index";
     }

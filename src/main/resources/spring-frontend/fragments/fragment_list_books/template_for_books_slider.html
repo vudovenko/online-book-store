@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="templateForBooksSlider(recommendedBooks, sectionName, dataLoad)">
+    <div class="Section-header">
+        <h2 class="Section-title" th:text="${sectionName}">Рекомендуемое
+        </h2>
+    </div>
+    <div class="Slider Slider_carousel">
+        <div class="Slider-box Cards" th:attr="data-load=${dataLoad}" data-load="recommended"
+             data-loadoffset="0" data-loadlimit="6"
+             th:insert="~{fragments/fragment_list_books/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
+        <div class="Slider-navigateWrap">
+            <div class="Slider-navigate">
+            </div>
+        </div>
+        <div class="Slider-load">
+            <div class="Slider-load-text">Идет загрузка данных
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

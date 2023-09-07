@@ -27,6 +27,16 @@ public class MainPageController {
         return bookService.getPageRecommendedBooks(0, 6).getContent();
     }
 
+    @ModelAttribute("recentBooks")
+    public List<Book> newBooks() {
+        return bookService.getPageRecommendedBooks(0, 6).getContent();
+    }
+
+    @ModelAttribute("popularBooks")
+    public List<Book> popularBooks() {
+        return bookService.getPageRecommendedBooks(0, 6).getContent();
+    }
+
     @GetMapping("/")
     public String mainPage() {
         return "index";
@@ -34,8 +44,22 @@ public class MainPageController {
 
     @GetMapping("/books/recommended")
     @ResponseBody
-    public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
-                                     @RequestParam("limit") Integer limit) {
+    public BooksPageDto getRecommendedBooksPage(@RequestParam("offset") Integer offset,
+                                                @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageRecommendedBooks(offset, limit).getContent());
+    }
+
+    @GetMapping("/books/recent")
+    @ResponseBody
+    public BooksPageDto getRecentBooksPage(@RequestParam("offset") Integer offset,
+                                           @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageRecommendedBooks(offset, limit).getContent());
+    }
+
+    @GetMapping("/books/popular")
+    @ResponseBody
+    public BooksPageDto getPopularBooksPage(@RequestParam("offset") Integer offset,
+                                            @RequestParam("limit") Integer limit) {
         return new BooksPageDto(bookService.getPageRecommendedBooks(offset, limit).getContent());
     }
 }

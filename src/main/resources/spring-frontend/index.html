@@ -57,54 +57,12 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <div class="Section">
-                <div class="Section-header">
-                    <h2 class="Section-title">Рекомендуемое
-                    </h2>
-                </div>
-                <div class="Slider Slider_carousel">
-                    <div class="Slider-box Cards" data-load="recommended" data-loadoffset="0" data-loadlimit="6"
-                         th:insert="~{fragments/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
-                    <div class="Slider-navigateWrap">
-                        <div class="Slider-navigate">
-                        </div>
-                    </div>
-                    <div class="Slider-load">
-                        <div class="Slider-load-text">Идет загрузка данных
-                        </div>
-                    </div>
-                </div>
-                <div class="Section-header">
-                    <h2 class="Section-title">Новинки
-                    </h2>
-                </div>
-                <div class="Slider Slider_carousel">
-                    <div class="Slider-box Cards" data-load="recent" data-loadoffset="0" data-loadlimit="6"
-                         th:insert="~{fragments/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
-                    <div class="Slider-navigateWrap">
-                        <div class="Slider-navigate">
-                        </div>
-                    </div>
-                    <div class="Slider-load">
-                        <div class="Slider-load-text">Идет загрузка данных
-                        </div>
-                    </div>
-                </div>
-                <div class="Section-header">
-                    <h2 class="Section-title">Популярное
-                    </h2>
-                </div>
-                <div class="Slider Slider_carousel">
-                    <div class="Slider-box Cards" data-load="popular" data-loadoffset="0" data-loadlimit="6"
-                         th:insert="~{fragments/books_pool_fragment :: bookSlider(${recommendedBooks})}"></div>
-                    <div class="Slider-navigateWrap">
-                        <div class="Slider-navigate">
-                        </div>
-                    </div>
-                    <div class="Slider-load">
-                        <div class="Slider-load-text">Идет загрузка данных
-                        </div>
-                    </div>
-                </div>
+                <div th:include="fragments/fragment_list_books/template_for_books_slider
+                        :: templateForBooksSlider(${recommendedBooks}, 'Рекомендуемое', 'recommended')"></div>
+                <div th:include="fragments/fragment_list_books/template_for_books_slider
+                        :: templateForBooksSlider(${recentBooks}, 'Новинки', 'recent')"></div>
+                <div th:include="fragments/fragment_list_books/template_for_books_slider
+                        :: templateForBooksSlider(${popularBooks}, 'Популярное', 'popular')"></div>
             </div>
             <h2 class="Middle-title">Книги по тегам
             </h2>
