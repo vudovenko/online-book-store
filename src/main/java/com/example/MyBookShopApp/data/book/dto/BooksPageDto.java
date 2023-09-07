@@ -4,7 +4,7 @@ import com.example.MyBookShopApp.data.book.entities.Book;
 import lombok.Data;
 
 import java.util.List;
-
+// todo проверить везде наличие Lombok аннотаций
 @Data
 public class BooksPageDto {
 

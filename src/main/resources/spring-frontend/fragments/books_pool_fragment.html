@@ -8,7 +8,10 @@
                     th:src="${book.image}"
                     src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
                 <div class="Card-sale" th:if="${book.price != 0}"
-                     th:text="${book.price * 100 + '% скидка'}">30% скидка
+                     th:text="${#numbers.formatInteger(book.price * 100, 0) + '% скидка'}">30% скидка
+                </div>
+                <div th:if="${book.isBestseller == 1}" class="Card-ribbon">
+                    <span class="Card-ribbonText">Бестселлер</span>
                 </div>
             </a>
             <div class="Card-content">

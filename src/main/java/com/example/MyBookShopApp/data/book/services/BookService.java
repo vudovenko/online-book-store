@@ -24,32 +24,37 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public List<Book> getBooksByAuthor(String authorName){
+    public List<Book> getBooksByAuthor(String authorName) {
         return bookRepository.findBooksByAuthorsWhoseFirstNameContains(authorName);
     }
 
-    public List<Book> getBooksByTitle(String title){
+    public List<Book> getBooksByTitle(String title) {
         return bookRepository.findBooksByTitleContainingIgnoreCase(title);
     }
 
-    public List<Book> getBooksWithPriceBetween(Integer min, Integer max){
-        return bookRepository.findBooksByPriceOldBetween(min,max);
+    public List<Book> getBooksWithPriceBetween(Integer min, Integer max) {
+        return bookRepository.findBooksByPriceOldBetween(min, max);
     }
 
-    public List<Book> getBooksWithPrice(Integer price){
+    public List<Book> getBooksWithPrice(Integer price) {
         return bookRepository.findBooksByPriceOldIs(price);
     }
 
-    public List<Book> getBooksWithMaxDiscount(){
+    public List<Book> getBooksWithMaxDiscount() {
         return bookRepository.getBooksWithMaxDiscount();
     }
 
-    public List<Book> getBestsellers(){
+    public List<Book> getBestsellers() {
         return bookRepository.getBestsellers();
     }
 
-    public Page<Book> getPageRecommendedBooks(Integer offset, Integer limit){
-        Pageable nextPage = PageRequest.of(offset,limit);
+    public Page<Book> getPageRecommendedBooks(Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
         return bookRepository.findAll(nextPage);
+    }
+
+    public Page<Book> getPageSearchResultBooks(String searchWord, Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset, limit);
+        return bookRepository.findBookByTitleContaining(searchWord, nextPage);
     }
 }
