@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
@@ -32,4 +33,12 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> getBooksWithMaxDiscount();
 
     Page<Book> findBookByTitleContaining(String bookTitle, Pageable nextPage);
+
+    Page<Book> findBooksByOrderByPubDateDesc(Pageable nextPage);
+
+    Page<Book> findBooksByPubDateAfterOrderByPubDateDesc(Date from, Pageable nextPage);
+
+    Page<Book> findBooksByPubDateBeforeOrderByPubDateDesc(Date to, Pageable nextPage);
+
+    Page<Book> findBookByPubDateBetweenOrderByPubDateDesc(Date from, Date to, Pageable nextPage);
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -23,7 +25,12 @@ public class RecentPageController {
 
     @ModelAttribute("recentBooks")
     public List<Book> recentBooks() {
-        return bookService.getBooksData();
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusMonths(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+        return bookService.getBooksByDatesBetween(startDate.format(formatter), endDate.format(formatter),
+                0, 20).getContent();
     }
 
     @GetMapping("/recent")
