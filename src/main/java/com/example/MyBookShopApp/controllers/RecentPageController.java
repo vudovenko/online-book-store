@@ -26,7 +26,7 @@ public class RecentPageController {
         return bookService.getBooksData();
     }
 
-    @GetMapping("/recent-page")
+    @GetMapping("/recent")
     public String recentPage() {
         return "books/recent";
     }

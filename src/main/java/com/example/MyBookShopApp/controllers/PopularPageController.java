@@ -26,7 +26,7 @@ public class PopularPageController {
         return bookService.getBooksData();
     }
 
-    @GetMapping("/popular-page")
+    @GetMapping("/popular")
     public String popularPage() {
         return "/books/popular";
     }
