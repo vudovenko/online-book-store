@@ -66,18 +66,8 @@ public class BookService {
         Pageable nextPage = PageRequest.of(offset, limit);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        Date fromDate = null;
-        Date toDate = null;
-        try {
-            if (from != null && !from.equals("")) {
-                fromDate = dateFormat.parse(from);
-            }
-            if (to != null && !to.equals("")) {
-                toDate = dateFormat.parse(to);
-            }
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        Date fromDate = parseDate(from, dateFormat);
+        Date toDate = parseDate(to, dateFormat);
 
         if (fromDate == null && toDate == null) {
             return bookRepository.findBooksByOrderByPubDateDesc(nextPage);
@@ -87,5 +77,16 @@ public class BookService {
             return bookRepository.findBooksByPubDateAfterOrderByPubDateDesc(fromDate, nextPage);
         }
         return bookRepository.findBookByPubDateBetweenOrderByPubDateDesc(fromDate, toDate, nextPage);
+    }
+
+    private Date parseDate(String date, SimpleDateFormat dateFormat) {
+        if (date != null && !date.isEmpty()) {
+            try {
+                return dateFormat.parse(date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
     }
 }
