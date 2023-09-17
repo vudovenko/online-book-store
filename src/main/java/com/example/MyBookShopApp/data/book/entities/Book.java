@@ -59,6 +59,18 @@ public class Book {
     @ApiModelProperty("discount value for book")
     private Double price;
 
+    @Column(name = "number_buys")
+    @ApiModelProperty("number of times book was bought")
+    private Double numberBuys;
+
+    @Column(name = "basket_quantity")
+    @ApiModelProperty("number of times book was added to basket")
+    private Double basketQuantity;
+
+    @Column(name = "number_deferred")
+    @ApiModelProperty("number of times book was deferred")
+    private Double numberDeferred;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "books",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
