@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.controllers;
 import com.example.MyBookShopApp.data.book.dto.BooksPageDto;
 import com.example.MyBookShopApp.data.book.entities.Book;
 import com.example.MyBookShopApp.data.book.services.BookService;
+import com.example.MyBookShopApp.data.book.services.BooksRatingAndPopularityService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,13 @@ import java.util.List;
 public class BooksRestApiController {
 
     private final BookService bookService;
+    private final BooksRatingAndPopularityService booksRatingAndPopularityService;
 
     @Autowired
-    public BooksRestApiController(BookService bookService) {
+    public BooksRestApiController(BookService bookService,
+                                  BooksRatingAndPopularityService booksRatingAndPopularityService) {
         this.bookService = bookService;
+        this.booksRatingAndPopularityService = booksRatingAndPopularityService;
     }
 
     @GetMapping("/by-author")
@@ -75,6 +79,6 @@ public class BooksRestApiController {
     @ResponseBody
     public BooksPageDto getPopularBooksPage(@RequestParam("offset") Integer offset,
                                             @RequestParam("limit") Integer limit) {
-        return new BooksPageDto(bookService.getPageRecommendedBooks(offset, limit).getContent());
+        return new BooksPageDto(booksRatingAndPopularityService.getPopularBooks(offset, limit).getContent());
     }
 }
