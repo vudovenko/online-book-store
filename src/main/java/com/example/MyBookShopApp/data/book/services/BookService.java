@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -88,5 +90,16 @@ public class BookService {
             }
         }
         return null;
+    }
+
+    public List<Book> getRecentBooksForLastMonth() {
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusMonths(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+        String fromDate = startDate.format(formatter);
+        String toDate = endDate.format(formatter);
+
+        return getBooksByDatesBetween(fromDate, toDate, 0, 20).getContent();
     }
 }
