@@ -41,4 +41,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     Page<Book> findBooksByPubDateBeforeOrderByPubDateDesc(Date to, Pageable nextPage);
 
     Page<Book> findBookByPubDateBetweenOrderByPubDateDesc(Date from, Date to, Pageable nextPage);
+
+    @Query(value = "from Book order by numberBuys + 0.7 * basketQuantity + 0.4 * numberDeferred desc",
+            countQuery = "select count(*) from Book")
+    Page<Book> findBooksByPopularity(Pageable nextPage);
 }
